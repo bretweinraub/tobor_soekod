@@ -102,7 +102,7 @@ class DokeosAgent
     h[:reload] = {} unless h[:reload]
     reload=h[:reload]
 
-    max_page = 10 # XXXXX - 
+    max_page = 20 # XXXXX - 
     if reload or Training.find_all.length == 0
       
       pagenum=0
@@ -126,7 +126,7 @@ class DokeosAgent
                   (firstcell,secondcell,thirdcell,forthcell,fifthcell) = cells
                   menu = cells[9]
                   if firstcell and input = firstcell.search("input")
-                    results[:training_code] = input.attr("value")
+                    results[:training_code] = input.attr("value").value
                   end
                   results[:training_name] = thirdcell.text if thirdcell
                   results[:lang] = forthcell.text if forthcell

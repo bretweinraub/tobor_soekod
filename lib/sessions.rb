@@ -105,8 +105,8 @@ module DokeosRobot
                                                  })
 
                     find_or_create(:klass => TrainingSessionAssoc,
-                                   :conditions => {:training_id => t.training_id,
-                                     :training_session_id => training_session.training_session_id},
+                                   :conditions => {:training_id => t.id,
+                                     :training_session_id => training_session.id},
                                    :require => true)
                       
                   end
@@ -143,8 +143,8 @@ module DokeosRobot
                                                        :required => true)
                           
                           find_or_create(:klass => TrainingSessionUser,
-                                         :conditions => {:training_session_id => training_session.training_session_id,
-                                           :dokeos_user_id => dokeos_user.dokeos_user_id})
+                                         :conditions => {:training_session_id => training_session.id,
+                                           :dokeos_user_id => dokeos_user.id})
                         end
                       end
                     end
