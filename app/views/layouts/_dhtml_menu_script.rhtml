@@ -1,0 +1,19 @@
+<%= render (:partial => "layouts/dhtml_menu_style") %>
+<script type="text/javascript">
+
+/***********************************************
+* AnyLink Drop Down Menu- © Dynamic Drive (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+//Contents for smconsole
+var stores=new Array()
+stores[0]='<a href="/store" >Stores</a>'
+		
+var menuwidth='165px' //default menu width
+var menubgcolor='white'  //menu bgcolor
+var disappeardelay=250  //menu disappear speed onMouseout (in miliseconds)
+var hidemenu_onclick="yes" //hide menu when user clicks within menu?
+
+<%= render (:partial => "layouts/dhtml_menu_generator") %>

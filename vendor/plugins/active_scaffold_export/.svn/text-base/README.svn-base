@@ -1,0 +1,5 @@
+This is my version of the active_scaffold_export plugin.
+
+It works with Rails 2.3 and both rails-2.3 and master branches of ActiveScaffold.
+
+I have renamed the old activescaffoldexport plugin to follow the same pattern as the other ActiveScaffold related plugins.

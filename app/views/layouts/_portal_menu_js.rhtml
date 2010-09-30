@@ -1,0 +1,29 @@
+<script type="text/javascript">
+
+/***********************************************
+* AnyLink Drop Down Menu- © Dynamic Drive (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+//Contents for smconsole
+
+var tables=new Array()
+<% ndx = 0 %>
+<% DokeosdbObject.find_all(:distinct => true).each do |obj| %>
+tables[<%= ndx %>]='<a href="/<%= obj.object_name %>"><%= obj.object_name.capitalize.pluralize.gsub(/_/,' ') %></a>'
+<% ndx +=  1 %>
+<% end %>
+
+var reports=new Array()
+<% ndx  = 0 %>
+<% UserView.find_all.each do |obj| %>
+reports[<%= ndx %>] = '<a href="/<%= obj.view_name.downcase %>"><%= obj.view_name.capitalize.pluralize.gsub(/_/,' ').gsub(/vs/,'') %></a>'
+<% ndx +=  1 %>
+<% end %>
+
+var menuwidth='165px' //default menu width
+var menubgcolor='white'  //menu bgcolor
+var disappeardelay=250  //menu disappear speed onMouseout (in miliseconds)
+var hidemenu_onclick="yes" //hide menu when user clicks within menu?
+

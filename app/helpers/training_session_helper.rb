@@ -1,0 +1,2 @@
+module TrainingSessionHelper
+end
