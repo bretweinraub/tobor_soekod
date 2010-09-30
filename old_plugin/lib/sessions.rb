@@ -157,9 +157,5 @@ module DokeosRobot
         end
       end
     end
-
-
-  
   end
 end
-  
