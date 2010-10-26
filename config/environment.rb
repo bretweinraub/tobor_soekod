@@ -8,8 +8,10 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
 
+  config.gem 'pg'
   config.gem 'hobofields'
   config.gem 'fastercsv'
+  config.gem 'mechanize'
   # config.gem 'hobosupport'
 
   # Settings in config/environments/* take precedence over those specified here.

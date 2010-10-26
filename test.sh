@@ -1,7 +1,8 @@
 #!/bin/bash
 
+home=/home/bweinraub/dev/aura.git/tobor_soekod
 run () {
-    cd /home/bweinraub/dev/medtronic/medtronic/portal/rails/ ; script/runner /home/bweinraub/dev/medtronic/medtronic/dokeos/tobor_soekod/test/test_dokeos_robot.rb -l bret.weinraub  -p minimedVENDOR09 -u http://www.medtronicdiabeteseuniversity.com -c $*
+    cd $home ; script/runner $home/old_plugin/test/test_dokeos_robot.rb -l bret.weinraub  -p minimedVENDOR09 -u http://www.medtronicdiabeteseuniversity.com -c $*
 }
 
 crawl_trainings () {
@@ -14,7 +15,7 @@ crawl_trainings () {
 }
     
 
-#run crawl_trainings
+run crawl_trainings
 crawl_trainings $1
 
 
