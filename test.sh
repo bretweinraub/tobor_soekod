@@ -15,7 +15,7 @@ crawl_trainings () {
 }
     
 
-run crawl_trainings
+# run crawl_trainings
 crawl_trainings $1
 
 

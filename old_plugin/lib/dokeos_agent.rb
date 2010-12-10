@@ -62,7 +62,8 @@ class DokeosAgent
       started = true if user.dokeos_user.dokeos_id.to_i == start_with.to_i
       next unless started
       next if only and user.dokeos_user.dokeos_id.to_i != only.to_i
-      crawl_user(:id => user.dokeos_user.dokeos_id)
+      crawl_user(:id => user.dokeos_user.dokeos_id,
+                 :session_id => id)
     end
   end
   
@@ -167,9 +168,18 @@ class DokeosAgent
     end
   end
 
+#   def crawl_user_results(h={})
+#     session_id=h[:session_id] or raise "set :session_id"
+#     id = h[:id] or raise "set :id"
+    
+#   end
+    
+
   def crawl_user(h={})
     id = h[:id]
-    
+    if session_id=h[:session_id]
+      raise "no such training_session #{session_id}" unless master_training_session = TrainingSession.find_by_dokeos_id(session_id)
+    end
     
     details_page = get_page("main/admin/user_edit.php?user_id=#{id}")
     
@@ -212,10 +222,20 @@ class DokeosAgent
         
         if training = Training.find_only_one(:all, :conditions => {:training_name => training_name})
           
-          if score_page = get_page("main/mySpace/myStudents.php?student=#{id}&details=true&course=#{training.training_code}&origin=&id_session=#infosStudent")
+          if score_page = get_page("main/mySpace/myStudents.php?student=#{id}&details=true&course=#{training.training_code}&origin=&id_session=#{session_id}#infosStudent")
+
+
+            # are we using a training session via the command line?  If not, look for a textual description
+            unless master_training_session
+              session_name = score_page.search(".//strong").text.split(/\|/).last.gsub(/ Session : /,'')
+            
+              if session_name and session_name.length > 0
+                local_training_session = TrainingSession.find_by_training_session_name(session_name)
+              end
+            end
+
             courses = score_page.search(".//table[@class='data_table']")[3]              
             tests = score_page.search(".//table[@class='data_table']")[4]
-            
             
             test_rows=tests.search("tr")
             
@@ -245,7 +265,8 @@ class DokeosAgent
               training_course_result = find_or_create(:klass => TrainingCourseResult,
                                                       :conditions => {
                                                         :training_course_id => training_course.id,
-                                                        :dokeos_user_id => dokeos_user.id
+                                                        :dokeos_user_id => dokeos_user.id,
+                                                        :training_session_id => (master_training_session || local_training_session).send(:id)
                                                       },
                                                       :required => true)
               
@@ -281,7 +302,8 @@ class DokeosAgent
               training_course_result = find_or_create(:klass => TrainingCourseResult,
                                                       :conditions => {
                                                         :training_course_id => training_course.id,
-                                                        :dokeos_user_id => dokeos_user.id
+                                                        :dokeos_user_id => dokeos_user.id,
+                                                        :training_session_id => (master_training_session || local_training_session).send(:id)                                                        
                                                       },
                                                       :required => true)
               

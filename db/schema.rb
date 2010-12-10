@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100930121549) do
+ActiveRecord::Schema.define(:version => 20101027042330) do
 
   create_table "dokeos_users", :force => true do |t|
     t.string   "first_name"
@@ -32,10 +32,12 @@ ActiveRecord::Schema.define(:version => 20100930121549) do
     t.datetime "updated_at"
     t.integer  "training_course_id"
     t.integer  "dokeos_user_id"
+    t.integer  "training_session_id"
   end
 
   add_index "training_course_results", ["dokeos_user_id"], :name => "index_training_course_results_on_dokeos_user_id"
   add_index "training_course_results", ["training_course_id"], :name => "index_training_course_results_on_training_course_id"
+  add_index "training_course_results", ["training_session_id"], :name => "index_training_course_results_on_training_session_id"
 
   create_table "training_courses", :force => true do |t|
     t.string   "course_type"

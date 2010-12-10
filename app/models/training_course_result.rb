@@ -11,6 +11,6 @@ class TrainingCourseResult < ActiveRecord::Base
 
   belongs_to :training_course
   belongs_to :dokeos_user
-
+  belongs_to :training_session
 end
 

@@ -3,6 +3,8 @@ views: # Statement type
     # This will be translated into a filename.  Here it is db/views/asset_dashboard.sql.
     # On views, the script name will also be the name of the view.
     # This view has no dependencies.
+    all_test_results_v:
+    test_summary:
 # functions:
 #     asset_immutable:
 #     check_asset_integrity:

@@ -15,7 +15,7 @@
 <div id="container">
  <div id="header">
 
-  <table width="100%">
+  <table
     <tr>
       <td align="left" valign="top">
 	<%= render_meteor_widget(::Meteor::Widget::DhtmlMenu::Spec.new(
@@ -28,6 +28,15 @@
 
       ])) %> 
       </td>
+
+      <td align="left" valign="top">
+	<%= render_meteor_widget(::Meteor::Widget::DhtmlMenu::Spec.new(
+	    :name => "DataTables", 
+	:menu_items => [ 
+        ["All Results","/chart/charter?klass=AllResultsV"],
+      ])) -%> 
+      </td>
+
       <td align="left" valign="top">
 	<%= render_meteor_widget(::Meteor::Widget::DhtmlMenu::Spec.new(
 	    :name => "Views", 
@@ -35,21 +44,19 @@
         ["All Results","/all_results_v"], 
       ])) %> 
       </td>
-
-      <td align="right">	
-	<% # = link_to "settings", "/settings", :target => "_blank" -%> <% # | %>
-	<%= link_to "home", "/" -%> | 
-	<% # = link_to "search", "/search" -%> <% # | %>
-      </td>
     </tr>
+	    <tr>
+  <center>
+    <%= image_tag("logo.png", :alt => "Edit") %>
+  </center>
+</tr>
   </table>
 
   <hr/>
-  <center>
-    <%= image_tag("logo.jpg", :alt => "Edit") %>
-  </center>
 
  </div id="header">
+
+
   <div id="main">
   <%= yield :layout %>
   </div>

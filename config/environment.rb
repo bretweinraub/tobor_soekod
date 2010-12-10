@@ -12,6 +12,8 @@ Rails::Initializer.run do |config|
   config.gem 'hobofields'
   config.gem 'fastercsv'
   config.gem 'mechanize'
+  config.gem 'gruff'
+  config.gem 'seer'
   # config.gem 'hobosupport'
 
   # Settings in config/environments/* take precedence over those specified here.
